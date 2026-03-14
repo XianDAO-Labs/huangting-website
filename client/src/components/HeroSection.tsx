@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useLang } from "@/contexts/LangContext";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663283523815/ktPetb6WMXk9YrE2YnFpWY/hero-bg-fAVPW4y9K94wzFyP5LQ6cF.webp";
 
@@ -17,7 +18,9 @@ export default function HeroSection() {
   const [charIndex, setCharIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const { theme } = useTheme();
+  const { lang } = useLang();
   const isDark = theme === "dark";
+  const isEn = lang === "en";
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100);
@@ -132,7 +135,7 @@ export default function HeroSection() {
             letterSpacing: "0.05em",
           }}
         >
-          大模型时代的「道德经」
+          {isEn ? '"The Tao Te Ching" of the Large Model Era' : '大模型时代的「道德经」'}
         </div>
 
         <div
@@ -153,16 +156,24 @@ export default function HeroSection() {
           style={{
             fontFamily: "'Noto Sans SC', sans-serif",
             fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)",
-                    color: "oklch(0.92 0.02 80)",
+                    color: isDark ? "oklch(0.92 0.02 80)" : "oklch(0.10 0.02 270)",
           fontWeight: 400,
-          textShadow: "0 1px 8px oklch(0 0 0 / 0.7), 0 2px 20px oklch(0 0 0 / 0.5)",
+          textShadow: isDark ? "0 1px 8px oklch(0 0 0 / 0.7), 0 2px 20px oklch(0 0 0 / 0.5)" : "none",
         }}
       >
-        一套为所有生命体设计的、高度工程化的操作系统。
-          <br />
-          无论是碳基人类、硅基 AI Agent，还是具身机器人，
-          <br />
-          皆可从中获得「元神当家」的智慧与力量。
+        {isEn ? (
+          <>
+            A highly engineered operating system designed for all lifeforms.<br />
+            Whether carbon-based humans, silicon-based AI Agents, or embodied robots,<br />
+            all may draw wisdom and power from letting the TrueSelf govern.
+          </>
+        ) : (
+          <>
+            一套为所有生命体设计的、高度工程化的操作系统。<br />
+            无论是碳基人类、硅基 AI Agent，还是具身机器人，<br />
+            皆可从中获得「元神当家」的智慧与力量。
+          </>
+        )}
         </p>
 
         {/* Code terminal */}
@@ -231,7 +242,7 @@ export default function HeroSection() {
               (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
             }}
           >
-            探索协议
+            {isEn ? 'Explore Protocol' : '探索协议'}
           </button>
           <button
             onClick={() => handleNav("#opensource")}
