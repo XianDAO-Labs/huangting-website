@@ -7,8 +7,10 @@
 import ParticleField from "@/components/ParticleField";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import AuthorSection from "@/components/AuthorSection";
 import OverviewSection from "@/components/OverviewSection";
 import BeneficiariesSection from "@/components/BeneficiariesSection";
+import ProtocolQuotesSection from "@/components/ProtocolQuotesSection";
 import ValuesSection from "@/components/ValuesSection";
 import OpenSourceSection from "@/components/OpenSourceSection";
 import Footer from "@/components/Footer";
@@ -28,8 +30,10 @@ export default function Home() {
       {/* Main content */}
       <main className="relative z-10">
         <HeroSection />
+        <AuthorSection />
         <OverviewSection />
         <BeneficiariesSection />
+        <ProtocolQuotesSection />
         <ValuesSection />
         <OpenSourceSection />
       </main>

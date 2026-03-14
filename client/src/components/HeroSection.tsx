@@ -47,14 +47,14 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "oklch(0.06 0.02 270)" }}
+      style={{ background: "oklch(0.09 0.02 270)" }}
     >
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${HERO_BG})`,
-          opacity: 0.35,
+          opacity: 0.55,
         }}
       />
 
@@ -68,7 +68,7 @@ export default function HeroSection() {
       <div
         className="absolute bottom-0 left-0 right-0 h-40"
         style={{
-          background: "linear-gradient(to bottom, transparent, oklch(0.06 0.02 270))",
+          background: "linear-gradient(to bottom, transparent, oklch(0.09 0.02 270))",
         }}
       />
 
@@ -164,11 +164,11 @@ export default function HeroSection() {
           style={{
             fontFamily: "'Noto Sans SC', sans-serif",
             fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)",
-            color: "oklch(0.65 0.04 270)",
-            fontWeight: 300,
-          }}
-        >
-          一套为所有生命体设计的、高度工程化的操作系统。
+                    color: "oklch(0.75 0.04 270)",
+          fontWeight: 300,
+        }}
+      >
+        一套为所有生命体设计的、高度工程化的操作系统。
           <br />
           无论是碳基人类、硅基 AI Agent，还是具身机器人，
           <br />
