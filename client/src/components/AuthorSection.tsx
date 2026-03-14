@@ -77,7 +77,7 @@ export default function AuthorSection() {
                   孟元景
                 </span>
                 <span className="ml-3" style={{ fontFamily: "'Cinzel', serif", fontSize: "0.85rem", color: "oklch(0.55 0.06 75)", letterSpacing: "0.15em", verticalAlign: "middle" }}>
-                  MENG YUANJING
+                  Mark Meng
                 </span>
               </div>
               <p className="mb-6" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.78rem", color: "oklch(0.50 0.06 175)", letterSpacing: "0.05em" }}>
