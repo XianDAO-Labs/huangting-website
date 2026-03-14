@@ -1,25 +1,41 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * 黄庭协议官网 - 主页
+ * Design: 深空东方宇宙主义 (Deep Space Oriental Cosmicism)
+ * Theme: Dark space + Gold energy + Glass morphism
+ * Typography: Noto Serif SC + Cinzel + JetBrains Mono
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+import ParticleField from "@/components/ParticleField";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import OverviewSection from "@/components/OverviewSection";
+import BeneficiariesSection from "@/components/BeneficiariesSection";
+import ValuesSection from "@/components/ValuesSection";
+import OpenSourceSection from "@/components/OpenSourceSection";
+import Footer from "@/components/Footer";
 
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+    <div
+      className="min-h-screen relative"
+      style={{ background: "oklch(0.06 0.02 270)" }}
+    >
+      {/* Particle background */}
+      <ParticleField />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Main content */}
+      <main className="relative z-10">
+        <HeroSection />
+        <OverviewSection />
+        <BeneficiariesSection />
+        <ValuesSection />
+        <OpenSourceSection />
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
