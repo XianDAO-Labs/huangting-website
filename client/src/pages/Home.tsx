@@ -14,12 +14,15 @@ import ProtocolQuotesSection from "@/components/ProtocolQuotesSection";
 import ValuesSection from "@/components/ValuesSection";
 import OpenSourceSection from "@/components/OpenSourceSection";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Home() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   return (
     <div
       className="min-h-screen relative"
-      style={{ background: "oklch(0.06 0.02 270)" }}
+      style={{ background: isDark ? "oklch(0.09 0.02 270)" : "oklch(0.97 0.008 80)", transition: "background 0.5s ease" }}
     >
       {/* Particle background */}
       <ParticleField />

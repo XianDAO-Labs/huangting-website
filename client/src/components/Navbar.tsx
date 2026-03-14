@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import TaijiLogo3D from "@/components/TaijiLogo3D";
+import { useLang } from "@/contexts/LangContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
-const navItems = [
+const navItemsZh = [
   { label: "协议概述", href: "#overview" },
   { label: "人类价值", href: "#human" },
   { label: "AI Agent", href: "#agent" },
@@ -9,9 +12,23 @@ const navItems = [
   { label: "开源计划", href: "#opensource" },
 ];
 
+const navItemsEn = [
+  { label: "Overview", href: "#overview" },
+  { label: "For Humans", href: "#human" },
+  { label: "AI Agent", href: "#agent" },
+  { label: "Robotics", href: "#robot" },
+  { label: "Value", href: "#values" },
+  { label: "Open Source", href: "#opensource" },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { lang, toggleLang } = useLang();
+  const { theme, toggleTheme } = useTheme();
+
+  const isDark = theme === "dark";
+  const navItems = lang === "zh" ? navItemsZh : navItemsEn;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -25,15 +42,29 @@ export default function Navbar() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const navBg = scrolled
+    ? isDark
+      ? "oklch(0.07 0.02 270 / 0.95)"
+      : "oklch(0.97 0.01 80 / 0.95)"
+    : "transparent";
+
+  const navBorder = scrolled
+    ? isDark
+      ? "1px solid oklch(1 0 0 / 0.06)"
+      : "1px solid oklch(0 0 0 / 0.08)"
+    : "none";
+
+  const navItemColor = isDark ? "oklch(0.65 0.04 270)" : "oklch(0.35 0.04 270)";
+  const mobileMenuBg = isDark ? "oklch(0.07 0.02 270 / 0.98)" : "oklch(0.97 0.01 80 / 0.98)";
+  const mobileItemColor = isDark ? "oklch(0.70 0.04 270)" : "oklch(0.30 0.04 270)";
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled
-          ? "oklch(0.07 0.02 270 / 0.95)"
-          : "transparent",
+        background: navBg,
         backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid oklch(1 0 0 / 0.06)" : "none",
+        borderBottom: navBorder,
       }}
     >
       <div className="container">
@@ -44,22 +75,7 @@ export default function Navbar() {
             className="flex items-center gap-2 flex-shrink-0"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
           >
-            {/* Taiji SVG logo */}
-            <div className="relative" style={{ width: "32px", height: "32px", flexShrink: 0 }}>
-              <svg viewBox="0 0 40 40" className="w-full h-full taiji-spin" style={{ animationDuration: "20s" }}>
-                <defs>
-                  <radialGradient id="goldGrad" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="oklch(0.90 0.16 80)" />
-                    <stop offset="100%" stopColor="oklch(0.65 0.10 75)" />
-                  </radialGradient>
-                </defs>
-                <circle cx="20" cy="20" r="18" fill="none" stroke="oklch(0.78 0.14 75 / 0.3)" strokeWidth="1" />
-                <path d="M20 2 A18 18 0 0 1 20 38 A9 9 0 0 1 20 20 A9 9 0 0 0 20 2Z" fill="url(#goldGrad)" opacity="0.8" />
-                <path d="M20 2 A18 18 0 0 0 20 38 A9 9 0 0 0 20 20 A9 9 0 0 1 20 2Z" fill="oklch(0.14 0.04 265)" opacity="0.9" />
-                <circle cx="20" cy="11" r="3" fill="url(#goldGrad)" />
-                <circle cx="20" cy="29" r="3" fill="oklch(0.14 0.04 265)" stroke="oklch(0.78 0.14 75 / 0.5)" strokeWidth="0.5" />
-              </svg>
-            </div>
+            <TaijiLogo3D size={36} />
             <div className="flex flex-col justify-center" style={{ lineHeight: 1.2 }}>
               <div
                 style={{
@@ -73,13 +89,13 @@ export default function Navbar() {
                   whiteSpace: "nowrap",
                 }}
               >
-                黄庭协议
+                {lang === "zh" ? "黄庭协议" : "Huangting Protocol"}
               </div>
               <div
                 style={{
                   fontFamily: "'Cinzel', serif",
                   fontSize: "0.6rem",
-                  color: "oklch(0.50 0.04 270)",
+                  color: isDark ? "oklch(0.50 0.04 270)" : "oklch(0.45 0.04 270)",
                   letterSpacing: "0.08em",
                   whiteSpace: "nowrap",
                 }}
@@ -97,7 +113,7 @@ export default function Navbar() {
                 onClick={() => handleNav(item.href)}
                 className="px-3 py-1.5 text-sm rounded transition-all duration-300"
                 style={{
-                  color: "oklch(0.65 0.04 270)",
+                  color: navItemColor,
                   fontFamily: "'Noto Sans SC', sans-serif",
                   fontWeight: 400,
                   fontSize: "0.82rem",
@@ -108,13 +124,46 @@ export default function Navbar() {
                   (e.target as HTMLElement).style.background = "oklch(0.78 0.14 75 / 0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLElement).style.color = "oklch(0.65 0.04 270)";
+                  (e.target as HTMLElement).style.color = navItemColor;
                   (e.target as HTMLElement).style.background = "transparent";
                 }}
               >
                 {item.label}
               </button>
             ))}
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              className="ml-1 w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300"
+              title={isDark ? "切换白天模式" : "Switch to Dark Mode"}
+              style={{
+                background: isDark ? "oklch(0.78 0.14 75 / 0.08)" : "oklch(0.20 0.04 270 / 0.08)",
+                border: `1px solid ${isDark ? "oklch(0.78 0.14 75 / 0.2)" : "oklch(0.20 0.04 270 / 0.2)"}`,
+                color: isDark ? "oklch(0.78 0.14 75)" : "oklch(0.30 0.04 270)",
+                fontSize: "0.85rem",
+              }}
+            >
+              {isDark ? "☀" : "☾"}
+            </button>
+
+            {/* Language toggle */}
+            <button
+              onClick={toggleLang}
+              className="ml-1 px-2.5 py-1 rounded transition-all duration-300"
+              style={{
+                fontFamily: "'Cinzel', serif",
+                fontSize: "0.7rem",
+                letterSpacing: "0.05em",
+                background: "oklch(0.78 0.14 75 / 0.08)",
+                border: "1px solid oklch(0.78 0.14 75 / 0.2)",
+                color: "oklch(0.78 0.14 75)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {lang === "zh" ? "EN" : "中"}
+            </button>
+
             <a
               href="https://github.com"
               target="_blank"
@@ -142,27 +191,57 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 flex-shrink-0"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="菜单"
-            style={{ color: "oklch(0.78 0.14 75)" }}
-          >
-            <div style={{ width: "20px", height: "16px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <span style={{ display: "block", height: "1.5px", width: "100%", background: "oklch(0.78 0.14 75)", transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
-              <span style={{ display: "block", height: "1.5px", width: "100%", background: "oklch(0.78 0.14 75)", opacity: menuOpen ? 0 : 1, transition: "all 0.3s" }} />
-              <span style={{ display: "block", height: "1.5px", width: "100%", background: "oklch(0.78 0.14 75)", transition: "all 0.3s", transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
-            </div>
-          </button>
+          {/* Mobile right controls */}
+          <div className="md:hidden flex items-center gap-2">
+            {/* Theme toggle mobile */}
+            <button
+              onClick={toggleTheme}
+              className="w-8 h-8 flex items-center justify-center rounded-full"
+              style={{
+                background: isDark ? "oklch(0.78 0.14 75 / 0.08)" : "oklch(0.20 0.04 270 / 0.08)",
+                border: `1px solid ${isDark ? "oklch(0.78 0.14 75 / 0.2)" : "oklch(0.20 0.04 270 / 0.2)"}`,
+                color: isDark ? "oklch(0.78 0.14 75)" : "oklch(0.30 0.04 270)",
+                fontSize: "0.85rem",
+              }}
+            >
+              {isDark ? "☀" : "☾"}
+            </button>
+            {/* Lang toggle mobile */}
+            <button
+              onClick={toggleLang}
+              className="px-2 py-1 rounded"
+              style={{
+                fontFamily: "'Cinzel', serif",
+                fontSize: "0.65rem",
+                background: "oklch(0.78 0.14 75 / 0.08)",
+                border: "1px solid oklch(0.78 0.14 75 / 0.2)",
+                color: "oklch(0.78 0.14 75)",
+              }}
+            >
+              {lang === "zh" ? "EN" : "中"}
+            </button>
+            {/* Hamburger */}
+            <button
+              className="p-1 flex-shrink-0"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="菜单"
+              style={{ color: "oklch(0.78 0.14 75)" }}
+            >
+              <div style={{ width: "20px", height: "16px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <span style={{ display: "block", height: "1.5px", width: "100%", background: "oklch(0.78 0.14 75)", transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
+                <span style={{ display: "block", height: "1.5px", width: "100%", background: "oklch(0.78 0.14 75)", opacity: menuOpen ? 0 : 1, transition: "all 0.3s" }} />
+                <span style={{ display: "block", height: "1.5px", width: "100%", background: "oklch(0.78 0.14 75)", transition: "all 0.3s", transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
         {menuOpen && (
           <div
             style={{
-              borderTop: "1px solid oklch(1 0 0 / 0.06)",
-              background: "oklch(0.07 0.02 270 / 0.98)",
+              borderTop: `1px solid ${isDark ? "oklch(1 0 0 / 0.06)" : "oklch(0 0 0 / 0.08)"}`,
+              background: mobileMenuBg,
               paddingTop: "0.75rem",
               paddingBottom: "0.75rem",
             }}
@@ -177,7 +256,7 @@ export default function Navbar() {
                   textAlign: "left",
                   padding: "0.75rem 1rem",
                   fontSize: "0.9rem",
-                  color: "oklch(0.70 0.04 270)",
+                  color: mobileItemColor,
                   fontFamily: "'Noto Sans SC', sans-serif",
                   background: "transparent",
                   border: "none",

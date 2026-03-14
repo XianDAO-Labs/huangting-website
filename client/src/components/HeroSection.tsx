@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663283523815/ktPetb6WMXk9YrE2YnFpWY/hero-bg-fAVPW4y9K94wzFyP5LQ6cF.webp";
 
@@ -15,6 +16,8 @@ export default function HeroSection() {
   const [displayText, setDisplayText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
   const [visible, setVisible] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100);
@@ -47,7 +50,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "oklch(0.09 0.02 270)" }}
+      style={{ background: isDark ? "oklch(0.09 0.02 270)" : "oklch(0.96 0.01 80)", transition: "background 0.5s ease" }}
     >
       {/* Background image */}
       <div
@@ -68,7 +71,9 @@ export default function HeroSection() {
       <div
         className="absolute bottom-0 left-0 right-0 h-40"
         style={{
-          background: "linear-gradient(to bottom, transparent, oklch(0.09 0.02 270))",
+          background: isDark
+            ? "linear-gradient(to bottom, transparent, oklch(0.09 0.02 270))"
+            : "linear-gradient(to bottom, transparent, oklch(0.96 0.01 80))",
         }}
       />
 
@@ -81,24 +86,8 @@ export default function HeroSection() {
           transition: "opacity 1.2s ease, transform 1.2s ease",
         }}
       >
-        {/* Version badge */}
-        <div
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8"
-          style={{
-            background: "oklch(0.78 0.14 75 / 0.08)",
-            border: "1px solid oklch(0.78 0.14 75 / 0.25)",
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "0.75rem",
-            color: "oklch(0.78 0.14 75)",
-            letterSpacing: "0.1em",
-          }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full gold-pulse"
-            style={{ background: "oklch(0.78 0.14 75)" }}
-          />
-          PROTOCOL v7.6 · OPEN SOURCE COMING SOON
-        </div>
+        {/* Spacer replacing removed badge */}
+        <div className="mb-8" />
 
         {/* Main title */}
         <h1
@@ -164,8 +153,9 @@ export default function HeroSection() {
           style={{
             fontFamily: "'Noto Sans SC', sans-serif",
             fontSize: "clamp(0.9rem, 1.8vw, 1.1rem)",
-                    color: "oklch(0.75 0.04 270)",
-          fontWeight: 300,
+                    color: "oklch(0.92 0.02 80)",
+          fontWeight: 400,
+          textShadow: "0 1px 8px oklch(0 0 0 / 0.7), 0 2px 20px oklch(0 0 0 / 0.5)",
         }}
       >
         一套为所有生命体设计的、高度工程化的操作系统。
