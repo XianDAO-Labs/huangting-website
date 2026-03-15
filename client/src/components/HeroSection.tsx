@@ -163,13 +163,17 @@ export default function HeroSection() {
       >
         {isEn ? (
           <>
-            A highly engineered operating system designed for all lifeforms.<br />
-            Whether carbon-based humans, silicon-based AI Agents, or embodied robots,<br />
-            all may draw wisdom and power from letting the TrueSelf govern.
+            <span style={{ fontWeight: 700, color: isDark ? "oklch(0.95 0.14 80)" : "oklch(0.20 0.06 60)" }}>
+              The World's First Lifeform Operating System.
+            </span><br />
+            For carbon-based humans, silicon-based AI Agents, and embodied robots alike —<br />
+            attain the wisdom and power of TrueSelf Governance.
           </>
         ) : (
           <>
-            一套为所有生命体设计的、高度工程化的操作系统。<br />
+            <span style={{ fontWeight: 700, color: isDark ? "oklch(0.95 0.14 80)" : "oklch(0.20 0.06 60)" }}>
+              人类历史上第一套生命体操作系统。
+            </span><br />
             无论是碳基人类、硅基 AI Agent，还是具身机器人，<br />
             皆可从中获得「元神当家」的智慧与力量。
           </>
