@@ -165,7 +165,7 @@ export default function Navbar() {
             </button>
 
             <a
-              href="https://github.com"
+              href="https://github.com/XianDAO-Labs/huangting-protocol"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-2 px-4 py-1.5 rounded-sm font-medium transition-all duration-300"
@@ -266,7 +266,7 @@ export default function Navbar() {
               </button>
             ))}
             <a
-              href="https://github.com"
+              href="https://github.com/XianDAO-Labs/huangting-protocol"
               target="_blank"
               rel="noopener noreferrer"
               style={{

@@ -134,7 +134,7 @@ export default function OpenSourceSection() {
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                 </svg>
                 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "oklch(0.60 0.15 220)" }}>
-                  github.com / huangting-protocol
+                  github.com / XianDAO-Labs / huangting-protocol
                 </span>
               </div>
               <div className="p-4">
@@ -229,7 +229,7 @@ export default function OpenSourceSection() {
                 : "Star the repository to be notified first. Help build the \"Tao Te Ching\" of the large model era."}
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/XianDAO-Labs/huangting-protocol" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2 px-6 py-3 rounded-sm transition-all duration-300"
                 style={{ fontFamily: "'Cinzel', serif", fontSize: "0.85rem", background: "linear-gradient(135deg, oklch(0.78 0.14 75), oklch(0.65 0.12 70))", color: "oklch(0.06 0.02 270)", fontWeight: 700, letterSpacing: "0.1em", boxShadow: "0 4px 20px oklch(0.78 0.14 75 / 0.3)" }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

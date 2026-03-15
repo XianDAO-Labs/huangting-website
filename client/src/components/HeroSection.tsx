@@ -225,8 +225,10 @@ export default function HeroSection() {
 
         {/* CTA buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <button
-            onClick={() => handleNav("#overview")}
+          <a
+            href="https://github.com/XianDAO-Labs/huangting-protocol"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 rounded-sm font-medium transition-all duration-300"
             style={{
               fontFamily: "'Noto Sans SC', sans-serif",
@@ -236,6 +238,8 @@ export default function HeroSection() {
               fontWeight: 600,
               letterSpacing: "0.05em",
               boxShadow: "0 4px 20px oklch(0.78 0.14 75 / 0.3)",
+              display: "inline-block",
+              textDecoration: "none",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 30px oklch(0.78 0.14 75 / 0.5)";
@@ -247,9 +251,11 @@ export default function HeroSection() {
             }}
           >
             {isEn ? 'Explore Protocol' : '探索协议'}
-          </button>
-          <button
-            onClick={() => handleNav("#opensource")}
+          </a>
+          <a
+            href="https://github.com/XianDAO-Labs/huangting-protocol"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 rounded-sm font-medium transition-all duration-300"
             style={{
               fontFamily: "'Cinzel', serif",
@@ -258,6 +264,8 @@ export default function HeroSection() {
               color: "oklch(0.78 0.14 75)",
               border: "1px solid oklch(0.78 0.14 75 / 0.4)",
               letterSpacing: "0.1em",
+              display: "inline-block",
+              textDecoration: "none",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.background = "oklch(0.78 0.14 75 / 0.1)";
@@ -269,7 +277,7 @@ export default function HeroSection() {
             }}
           >
             OPEN SOURCE
-          </button>
+          </a>
         </div>
 
         {/* Scroll indicator */}
