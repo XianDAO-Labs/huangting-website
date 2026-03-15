@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1773600937469,
+      "tag": "0000_wonderful_shooting_star",
+      "breakpoints": true
+    }
+  ]
+}

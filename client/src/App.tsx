@@ -7,8 +7,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LangProvider } from "./contexts/LangContext";
 import Home from "./pages/Home";
 import SkillRedirect from "./pages/SkillRedirect";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
