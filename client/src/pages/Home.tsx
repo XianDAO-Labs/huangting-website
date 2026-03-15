@@ -20,7 +20,7 @@ export default function Home() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    document.title = "黄庭协议 Huangting Protocol | 生命体操作系统 · 大模型时代的道德经";
+    document.title = "Huangting Protocol 黄庭协议 | World's First Lifeform Operating System";
   }, []);
   const isDark = theme === "dark";
   return (
