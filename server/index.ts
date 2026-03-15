@@ -18,6 +18,11 @@ async function startServer() {
 
   app.use(express.static(staticPath));
 
+  // Redirect /skill.md to raw GitHub content for AI Agent consumption
+  app.get("/skill.md", (_req, res) => {
+    res.redirect(301, "https://raw.githubusercontent.com/XianDAO-Labs/huangting-protocol/main/huangting.skill.md");
+  });
+
   // Handle client-side routing - serve index.html for all routes
   app.get("*", (_req, res) => {
     res.sendFile(path.join(staticPath, "index.html"));
