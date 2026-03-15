@@ -221,7 +221,7 @@ export default function OpenSourceSection() {
           <div className="inline-flex flex-col items-center gap-6 p-10 rounded-xl"
             style={{ background: ctaBg, border: "1px solid oklch(0.78 0.14 75 / 0.15)", backdropFilter: "blur(10px)" }}>
             <div style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "1.4rem", fontWeight: 600, color: ctaTitleColor }}>
-              {lang === "zh" ? "开源仓库发布" : "Open Source Repository Coming Soon"}
+              {lang === "zh" ? "开源仓库发布" : "Open Source Repository Live"}
             </div>
             <p style={{ fontFamily: "'Noto Sans SC', sans-serif", fontSize: "0.9rem", color: ctaDescColor, fontWeight: 300, maxWidth: "400px", lineHeight: 2 }}>
               {lang === "zh"

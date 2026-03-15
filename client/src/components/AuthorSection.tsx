@@ -51,22 +51,19 @@ export default function AuthorSection() {
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 p-8 md:p-12">
             {/* Avatar */}
             <div className="flex-shrink-0">
-              <div className="relative flex items-center justify-center" style={{ width: "100px", height: "100px" }}>
-                <div className="absolute inset-0 rounded-full" style={{ border: "1px solid oklch(0.78 0.14 75 / 0.25)", animation: "spin 30s linear infinite" }} />
-                <div className="absolute rounded-full" style={{ inset: "8px", border: "1px solid oklch(0.65 0.12 175 / 0.2)", animation: "spin 15s linear infinite reverse" }} />
-                <svg viewBox="0 0 60 60" style={{ width: "64px", height: "64px" }}>
-                  <defs>
-                    <radialGradient id="authorGold2" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="oklch(0.92 0.16 80)" />
-                      <stop offset="100%" stopColor="oklch(0.72 0.12 75)" />
-                    </radialGradient>
-                  </defs>
-                  <circle cx="30" cy="30" r="28" fill="none" stroke="oklch(0.78 0.14 75 / 0.2)" strokeWidth="1" />
-                  <path d="M30 2 A28 28 0 0 1 30 58 A14 14 0 0 1 30 30 A14 14 0 0 0 30 2Z" fill="url(#authorGold2)" opacity="0.9" />
-                  <path d="M30 2 A28 28 0 0 0 30 58 A14 14 0 0 0 30 30 A14 14 0 0 1 30 2Z" fill={isDark ? "oklch(0.10 0.03 265)" : "oklch(0.25 0.03 265)"} opacity="0.95" />
-                  <circle cx="30" cy="16" r="5" fill="url(#authorGold2)" />
-                  <circle cx="30" cy="44" r="5" fill={isDark ? "oklch(0.10 0.03 265)" : "oklch(0.25 0.03 265)"} stroke="oklch(0.78 0.14 75 / 0.4)" strokeWidth="0.8" />
-                </svg>
+              <div className="relative flex items-center justify-center" style={{ width: "120px", height: "120px" }}>
+                {/* Outer rotating ring */}
+                <div className="absolute inset-0 rounded-full" style={{ border: "1px solid oklch(0.78 0.14 75 / 0.35)", animation: "spin 20s linear infinite" }} />
+                {/* Inner rotating ring */}
+                <div className="absolute rounded-full" style={{ inset: "6px", border: "1px solid oklch(0.65 0.12 175 / 0.25)", animation: "spin 10s linear infinite reverse" }} />
+                {/* Gold glow */}
+                <div className="absolute rounded-full" style={{ inset: "12px", boxShadow: "0 0 20px oklch(0.78 0.14 75 / 0.3)" }} />
+                {/* Avatar photo */}
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663283523815/ktPetb6WMXk9YrE2YnFpWY/author-avatar_29c51c6d.jpg"
+                  alt="Mark Meng 孟元景"
+                  style={{ width: "96px", height: "96px", borderRadius: "50%", objectFit: "cover", objectPosition: "center top", border: "2px solid oklch(0.78 0.14 75 / 0.5)", position: "relative", zIndex: 1 }}
+                />
               </div>
             </div>
 
