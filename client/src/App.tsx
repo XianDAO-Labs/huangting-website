@@ -6,11 +6,13 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LangProvider } from "./contexts/LangContext";
 import Home from "./pages/Home";
+import SkillRedirect from "./pages/SkillRedirect";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/skill.md"} component={SkillRedirect} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
