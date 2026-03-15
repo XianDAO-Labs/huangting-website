@@ -14,10 +14,14 @@ import ProtocolQuotesSection from "@/components/ProtocolQuotesSection";
 import ValuesSection from "@/components/ValuesSection";
 import OpenSourceSection from "@/components/OpenSourceSection";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
-
 export default function Home() {
   const { theme } = useTheme();
+
+  useEffect(() => {
+    document.title = "黄庭协议 Huangting Protocol | 生命体操作系统 · 大模型时代的道德经";
+  }, []);
   const isDark = theme === "dark";
   return (
     <div
