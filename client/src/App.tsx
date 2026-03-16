@@ -7,12 +7,15 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LangProvider } from "./contexts/LangContext";
 import Home from "./pages/Home";
 import SkillRedirect from "./pages/SkillRedirect";
+import Mcp from "./pages/Mcp";
+
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/skill.md"} component={SkillRedirect} />
+      <Route path={"/mcp"} component={Mcp} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
