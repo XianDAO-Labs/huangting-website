@@ -10,6 +10,8 @@ const navItemsZh = [
   { label: "具身机器人", href: "#robot" },
   { label: "三维价值", href: "#values" },
   { label: "开源计划", href: "#opensource" },
+  { label: "知识库", href: "/kb" },
+  { label: "开发者", href: "/developers" },
 ];
 
 const navItemsEn = [
@@ -19,6 +21,8 @@ const navItemsEn = [
   { label: "Robotics", href: "#robot" },
   { label: "Value", href: "#values" },
   { label: "Open Source", href: "#opensource" },
+  { label: "Knowledge Base", href: "/kb" },
+  { label: "Developers", href: "/developers" },
 ];
 
 export default function Navbar() {
@@ -38,6 +42,10 @@ export default function Navbar() {
 
   const handleNav = (href: string) => {
     setMenuOpen(false);
+    if (href.startsWith("/")) {
+      window.location.href = href;
+      return;
+    }
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
   <url>
     <loc>https://huangting.ai/</loc>
     <lastmod>2026-03-16</lastmod>
@@ -10,4 +12,68 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://huangting.ai/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://huangting.ai/"/>
   </url>
+
+  <!-- Knowledge Base index -->
+  <url>
+    <loc>https://huangting.ai/kb</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://huangting.ai/kb"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://huangting.ai/kb"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://huangting.ai/kb"/>
+  </url>
+
+  <!-- Knowledge Base: Core Concepts -->
+  <url>
+    <loc>https://huangting.ai/kb/concepts</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://huangting.ai/kb/concepts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://huangting.ai/kb/concepts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://huangting.ai/kb/concepts"/>
+  </url>
+
+  <!-- Knowledge Base: Protocol Assertions -->
+  <url>
+    <loc>https://huangting.ai/kb/assertions</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://huangting.ai/kb/assertions"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://huangting.ai/kb/assertions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://huangting.ai/kb/assertions"/>
+  </url>
+
+  <!-- Developer Hub -->
+  <url>
+    <loc>https://huangting.ai/developers</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://huangting.ai/developers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://huangting.ai/developers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://huangting.ai/developers"/>
+  </url>
+
+  <!-- MCP Service Documentation -->
+  <url>
+    <loc>https://huangting.ai/mcp</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://huangting.ai/mcp"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://huangting.ai/mcp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://huangting.ai/mcp"/>
+  </url>
+
+  <!-- Skill file (AI Agent entry) -->
+  <url>
+    <loc>https://huangting.ai/skill.md</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
