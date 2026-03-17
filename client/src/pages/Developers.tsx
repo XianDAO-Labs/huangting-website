@@ -92,7 +92,7 @@ const resources = [
 ];
 
 export default function Developers() {
-  const { t, lang } = useLang();
+  const { t, lang, toggleLang } = useLang();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
@@ -155,7 +155,7 @@ export default function Developers() {
               GitHub
             </a>
             <button
-              onClick={() => {}}
+              onClick={toggleLang}
               style={{
                 fontSize: 12,
                 padding: "4px 10px",

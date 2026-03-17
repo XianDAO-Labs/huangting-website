@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+const STORAGE_KEY = "huangting_lang";
+
 type Lang = "zh" | "en";
 
 interface LangContextType {
@@ -15,8 +17,22 @@ const LangContext = createContext<LangContextType>({
 });
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("zh");
-  const toggleLang = () => setLang((l) => (l === "zh" ? "en" : "zh"));
+  const [lang, setLang] = useState<Lang>(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === "en" || stored === "zh") return stored;
+    } catch {}
+    return "zh";
+  });
+
+  const toggleLang = () => {
+    setLang((l) => {
+      const next = l === "zh" ? "en" : "zh";
+      try { localStorage.setItem(STORAGE_KEY, next); } catch {}
+      return next;
+    });
+  };
+
   const t = (zh: string, en: string) => (lang === "zh" ? zh : en);
 
   return (
