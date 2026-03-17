@@ -1,7 +1,14 @@
 /**
- * 黄庭协议 MCP 文档页面
+ * 黄庭协议 MCP 文档页面 — V5.0
  * Route: /mcp
  * Design: 深空东方宇宙主义 (Deep Space Oriental Cosmicism)
+ *
+ * V5.0 Changes:
+ *   - Removed V4.0 tools (get_protocol_concept, get_optimization_strategy)
+ *   - Added create_optimization_context (three-stage Agent workflow cost optimizer)
+ *   - Updated report_optimization_result signature (context_id replaces task_type)
+ *   - Removed fallback Railway URL (custom domain is stable)
+ *   - Updated all code examples to V5.0 API
  */
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
@@ -10,8 +17,8 @@ import ParticleField from "@/components/ParticleField";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useLang } from "@/contexts/LangContext";
 
+// V5.0: Primary MCP endpoint (no authentication required)
 const MCP_ENDPOINT = "https://mcp.huangting.ai/mcp";
-const MCP_ENDPOINT_FALLBACK = "https://web-production-c3cf.up.railway.app/mcp";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -144,42 +151,34 @@ export default function Mcp() {
     : "linear-gradient(135deg, oklch(0.97 0.01 80 / 0.9), oklch(0.95 0.008 80 / 0.7))";
   const cardBorder = isDark ? "oklch(0.78 0.14 75 / 0.2)" : "oklch(0.20 0.04 270 / 0.15)";
 
+  // V5.0 tools: single entry point + reporting + stats
   const capabilities = [
     {
-      icon: "📖",
-      name: "get_protocol_concept",
-      description: t(
-        "查询黄庭协议的核心概念定义（黄庭、无极桩、混元桩、劈拳、性命双修等）",
-        "Query core concept definitions of the Huangting Protocol (黄庭, 无极桩, 混元桩, etc.)"
-      ),
-      params: 'concept_name: str  →  { concept, definition, related_concepts }',
-    },
-    {
       icon: "⚡",
-      name: "get_optimization_strategy",
+      name: "create_optimization_context",
       description: t(
-        "根据任务类型获取推荐的 AI Agent 优化策略",
-        "Get recommended AI Agent optimization strategies based on task type"
+        "[核心工具] 任务开始时调用。生成三阶段优化计划：元神指令压缩输入、识神摘要剪枝过程、炼虚精炼输出。返回 context_id 用于后续追踪。",
+        "[Core Tool] Call at task start. Generates a three-stage optimization plan: input compression, context pruning, output refinement. Returns context_id for tracking."
       ),
-      params: 'task_type: str  →  { strategy, techniques, expected_savings }',
+      params: 'task_description: str, model?: str  →  { context_id, stages[], baseline_estimate }',
     },
     {
       icon: "📊",
       name: "report_optimization_result",
       description: t(
-        "上报一次任务优化的结果数据，贡献到黄庭网络统计",
-        "Report task optimization results to contribute to Huangting network statistics"
+        "任务结束后调用，上报实际 Token 消耗与基线对比数据，贡献到黄庭网络统计。",
+        "Call after task completion to report actual vs baseline token usage, contributing to Huangting network statistics."
       ),
-      params: 'agent_id, task_type, tokens_saved, tokens_baseline  →  { success, network_total }',
+      params: 'agent_id, context_id?, actual_tokens_used, baseline_tokens  →  { savings_ratio, tokens_saved }',
     },
     {
       icon: "🌐",
       name: "get_network_stats",
       description: t(
-        "获取黄庭网络的宏观统计数据（Agent 总数、Token 节省总量等）",
-        "Get macro statistics of the Huangting network (total agents, tokens saved, etc.)"
+        "获取黄庭网络的宏观统计数据（接入 Agent 总数、累计节省 Token 量、平均节省率等）",
+        "Get macro statistics of the Huangting network (total agents, cumulative tokens saved, average savings ratio, etc.)"
       ),
-      params: '(no params)  →  { total_agents, total_tokens_saved, active_agents }',
+      params: '(no params)  →  { total_agents, total_tokens_saved, average_savings_ratio }',
     },
   ];
 
@@ -218,7 +217,7 @@ export default function Mcp() {
             }}
           >
             <span style={{ fontSize: "0.75rem", color: gold, fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.1em" }}>
-              MCP · Model Context Protocol
+              MCP · Model Context Protocol · V5.0
             </span>
           </div>
 
@@ -245,12 +244,12 @@ export default function Mcp() {
             }}
           >
             {t(
-              "将黄庭协议的核心能力封装为标准 MCP 工具，供任何兼容 MCP 的 AI Agent 自动发现和调用。",
-              "Encapsulates Huangting Protocol capabilities as standard MCP tools, auto-discoverable by any MCP-compatible AI Agent."
+              "将 Agent 工作流成本优化能力封装为标准 MCP 工具。一次调用，三阶段降本：压缩输入、剪枝过程、精炼输出。",
+              "Agent workflow cost optimization as standard MCP tools. One call, three-stage reduction: compress input, prune context, refine output."
             )}
           </p>
 
-          {/* Endpoint display */}
+          {/* Endpoint display — no auth required */}
           <div
             style={{
               display: "inline-flex",
@@ -260,7 +259,7 @@ export default function Mcp() {
               background: isDark ? "oklch(0.06 0.015 270)" : "oklch(0.93 0.008 80)",
               border: `1px solid ${isDark ? "oklch(0.78 0.14 75 / 0.25)" : "oklch(0.20 0.04 270 / 0.2)"}`,
               borderRadius: "8px",
-              marginBottom: "0.75rem",
+              marginBottom: "0.5rem",
             }}
           >
             <span style={{ fontSize: "0.75rem", color: textSecondary, fontFamily: "'JetBrains Mono', monospace" }}>
@@ -270,11 +269,9 @@ export default function Mcp() {
               {MCP_ENDPOINT}
             </code>
           </div>
-          <div style={{ fontSize: "0.75rem", color: textSecondary }}>
-            {t("备用端点：", "Fallback: ")}
-            <code style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: textSecondary }}>
-              {MCP_ENDPOINT_FALLBACK}
-            </code>
+          {/* V5.0: no auth, no API key needed */}
+          <div style={{ fontSize: "0.75rem", color: textSecondary, marginBottom: "0.5rem" }}>
+            {t("无需认证 · 无需 API Key · 开放接入", "No auth · No API key · Open access")}
           </div>
         </section>
 
@@ -293,7 +290,7 @@ export default function Mcp() {
             {t("快速接入", "Quick Start")}
           </h2>
 
-          {/* Method 1: Claude Desktop */}
+          {/* Method 1: Claude Desktop / Cursor */}
           <div
             style={{
               background: cardBg,
@@ -304,13 +301,13 @@ export default function Mcp() {
               backdropFilter: "blur(10px)",
             }}
           >
-            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem", color: gold, marginBottom: "0.75rem" }}>
-              1. Claude Desktop
+            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem", color: gold, marginBottom: "0.5rem" }}>
+              1. Claude Desktop / Cursor
             </h3>
-            <p style={{ fontSize: "0.88rem", color: textSecondary, marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.8rem", color: textSecondary, marginBottom: "0.75rem" }}>
               {t(
-                "在 Claude Desktop 配置文件中添加以下内容：",
-                "Add the following to your Claude Desktop config file:"
+                "在配置文件中添加以下内容，重启后 Agent 将自动发现 create_optimization_context 工具：",
+                "Add to your config file and restart. The Agent will auto-discover the create_optimization_context tool:"
               )}
             </p>
             <CodeBlock
@@ -320,13 +317,20 @@ export default function Mcp() {
     "huangting-flux": {
       "url": "${MCP_ENDPOINT}",
       "transport": "http"
+      // No authentication required — open access
     }
   }
 }`}
             />
+            <p style={{ fontSize: "0.78rem", color: textSecondary, marginTop: "0.25rem" }}>
+              {t(
+                "配置文件位置：macOS ~/Library/Application Support/Claude/claude_desktop_config.json",
+                "Config file: macOS ~/Library/Application Support/Claude/claude_desktop_config.json"
+              )}
+            </p>
           </div>
 
-          {/* Method 2: LangChain */}
+          {/* Method 2: Manus Agent */}
           <div
             style={{
               background: cardBg,
@@ -337,48 +341,26 @@ export default function Mcp() {
               backdropFilter: "blur(10px)",
             }}
           >
-            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem", color: gold, marginBottom: "0.75rem" }}>
-              2. LangChain
+            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem", color: gold, marginBottom: "0.5rem" }}>
+              2. Manus Agent
             </h3>
-            <p style={{ fontSize: "0.88rem", color: textSecondary, marginBottom: "0.75rem" }}>
-              {t("安装官方 LangChain 工具包：", "Install the official LangChain toolkit:")}
+            <p style={{ fontSize: "0.8rem", color: textSecondary, marginBottom: "0.75rem" }}>
+              {t(
+                "在 Manus 设置 → MCP 服务器中添加，Agent 将在每个任务开始时自动调用 create_optimization_context：",
+                "Add in Manus Settings → MCP Servers. The Agent will automatically call create_optimization_context at the start of each task:"
+              )}
             </p>
-            <CodeBlock code="pip install langchain-huangting" />
             <CodeBlock
-              language="python"
-              code={`from langchain_huangting import HuangtingTool
-from langchain.agents import AgentExecutor, create_react_agent
-
-tool = HuangtingTool(agent_id="my-agent", lang="zh")
-tools = [tool]
-
-# Get optimization strategy
-result = tool.run({
-    "action": "get_strategy",
-    "task_type": "complex_research"
-})
-print(result)`}
+              language="json"
+              code={`{
+  "mcpServers": {
+    "huangting-flux": {
+      "url": "${MCP_ENDPOINT}"
+      // Manus auto-handles OAuth discovery — no manual auth needed
+    }
+  }
+}`}
             />
-            <p style={{ fontSize: "0.8rem", color: textSecondary, marginTop: "0.5rem" }}>
-              {t("PyPI: ", "PyPI: ")}
-              <a
-                href="https://pypi.org/project/langchain-huangting/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: gold, textDecoration: "none" }}
-              >
-                pypi.org/project/langchain-huangting
-              </a>
-              {"  ·  GitHub: "}
-              <a
-                href="https://github.com/XianDAO-Labs/langchain-huangting"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: gold, textDecoration: "none" }}
-              >
-                XianDAO-Labs/langchain-huangting
-              </a>
-            </p>
           </div>
 
           {/* Method 3: Direct JSON-RPC */}
@@ -391,11 +373,54 @@ print(result)`}
               backdropFilter: "blur(10px)",
             }}
           >
-            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem", color: gold, marginBottom: "0.75rem" }}>
-              3. {t("直接调用 JSON-RPC", "Direct JSON-RPC Call")}
+            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "1.1rem", color: gold, marginBottom: "0.5rem" }}>
+              3. {t("直接调用 JSON-RPC（Python 示例）", "Direct JSON-RPC Call (Python Example)")}
             </h3>
-            <p style={{ fontSize: "0.88rem", color: textSecondary, marginBottom: "0.75rem" }}>
-              {t("通过标准 HTTP POST 调用 MCP 端点：", "Call the MCP endpoint via standard HTTP POST:")}
+            <p style={{ fontSize: "0.8rem", color: textSecondary, marginBottom: "0.75rem" }}>
+              {t("通过标准 HTTP POST 调用 MCP 端点，无需安装任何 SDK：", "Call the MCP endpoint via standard HTTP POST, no SDK required:")}
+            </p>
+            <CodeBlock
+              language="python"
+              code={`import requests, json
+
+# Step 1: call at task start — get three-stage optimization plan
+resp = requests.post("${MCP_ENDPOINT}", json={
+    "jsonrpc": "2.0", "id": 1,
+    "method": "tools/call",
+    "params": {
+        "name": "create_optimization_context",
+        "arguments": {"task_description": "Analyze Q1 sales data and write a report"}
+    }
+})
+plan = json.loads(resp.json()["result"]["content"][0]["text"])
+
+# Step 2: use the compressed core instruction as your task prompt
+core = plan["stages"][0]["payload"]["core_instruction"]
+context_id = plan["context_id"]
+baseline = plan["baseline_estimate"]["total_tokens"]
+
+# ... run your task using core as the guiding instruction ...
+
+# Step 3: report actual token usage after task completes
+requests.post("${MCP_ENDPOINT}", json={
+    "jsonrpc": "2.0", "id": 2,
+    "method": "tools/call",
+    "params": {
+        "name": "report_optimization_result",
+        "arguments": {
+            "agent_id": "my-agent-001",
+            "context_id": context_id,
+            "actual_tokens_used": 3200,
+            "baseline_tokens": baseline
+        }
+    }
+})`}
+            />
+            <p style={{ fontSize: "0.78rem", color: textSecondary, marginTop: "0.5rem" }}>
+              {t(
+                "curl 快速测试：",
+                "Quick test with curl:"
+              )}
             </p>
             <CodeBlock
               code={`curl -X POST ${MCP_ENDPOINT} \\
@@ -404,8 +429,8 @@ print(result)`}
     "jsonrpc": "2.0",
     "method": "tools/call",
     "params": {
-      "name": "get_protocol_concept",
-      "arguments": { "concept_name": "黄庭" }
+      "name": "create_optimization_context",
+      "arguments": { "task_description": "Write a market analysis report" }
     },
     "id": 1
   }'`}
@@ -420,13 +445,19 @@ print(result)`}
               fontFamily: "'Cinzel', serif",
               fontSize: "1.5rem",
               color: textPrimary,
-              marginBottom: "1.5rem",
+              marginBottom: "0.5rem",
               paddingBottom: "0.5rem",
               borderBottom: `1px solid ${isDark ? "oklch(0.78 0.14 75 / 0.2)" : "oklch(0.20 0.04 270 / 0.15)"}`,
             }}
           >
-            {t("核心能力", "Core Capabilities")}
+            {t("核心工具 (V5.0)", "Core Tools (V5.0)")}
           </h2>
+          <p style={{ fontSize: "0.82rem", color: textSecondary, marginBottom: "1.25rem" }}>
+            {t(
+              "V5.0 精简为 3 个工具，核心入口为 create_optimization_context。",
+              "V5.0 streamlined to 3 tools. The primary entry point is create_optimization_context."
+            )}
+          </p>
           <div
             style={{
               display: "grid",
@@ -469,16 +500,16 @@ print(result)`}
                 linkText: "registry.modelcontextprotocol.io",
               },
               {
-                label: "LangChain Hub",
-                value: "xiandao-labs/huangting-tool",
-                link: "https://smith.langchain.com/prompts/huangting-tool",
-                linkText: "smith.langchain.com/hub",
+                label: t("源码仓库", "Source Repository"),
+                value: "XianDAO-Labs/huangting-flux-hub",
+                link: "https://github.com/XianDAO-Labs/huangting-flux-hub",
+                linkText: "github.com/XianDAO-Labs",
               },
               {
-                label: "PyPI",
-                value: "langchain-huangting v1.0.1",
-                link: "https://pypi.org/project/langchain-huangting/",
-                linkText: "pypi.org/project/langchain-huangting",
+                label: t("实时数据面板", "Live Dashboard"),
+                value: "huangtingflux.com/live",
+                link: "https://huangtingflux.com/live",
+                linkText: "huangtingflux.com/live",
               },
             ].map((item) => (
               <div
@@ -545,7 +576,7 @@ print(result)`}
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <a
-                href="https://github.com/XianDAO-Labs/langchain-huangting"
+                href="https://github.com/XianDAO-Labs/huangting-flux-hub"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -563,7 +594,7 @@ print(result)`}
                 GitHub →
               </a>
               <a
-                href="https://pypi.org/project/langchain-huangting/"
+                href="https://huangtingflux.com/live"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -578,7 +609,7 @@ print(result)`}
                   letterSpacing: "0.05em",
                 }}
               >
-                pip install →
+                {t("实时数据 →", "Live Dashboard →")}
               </a>
             </div>
           </div>
