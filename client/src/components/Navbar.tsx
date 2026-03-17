@@ -79,9 +79,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between" style={{ height: "60px" }}>
           {/* Logo */}
           <a
-            href="#"
+            href="/"
             className="flex items-center gap-2 flex-shrink-0"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
           >
             <TaijiLogo3D size={36} />
             <div className="flex flex-col justify-center" style={{ lineHeight: 1.2 }}>
