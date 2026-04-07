@@ -1,4 +1,21 @@
 User-agent: *
 Allow: /
 
+# Baidu specific
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Baidu image crawler
+User-agent: Baiduspider-image
+Allow: /
+
+# Baidu video crawler
+User-agent: Baiduspider-video
+Allow: /
+
+# Baidu news crawler
+User-agent: Baiduspider-news
+Allow: /
+
 Sitemap: https://huangting.ai/sitemap.xml

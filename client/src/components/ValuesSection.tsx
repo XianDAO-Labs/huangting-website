@@ -37,16 +37,48 @@ const bizValues: BilingualValues = {
 
 const openSourceValues: BilingualValues = {
   zh: [
-    { title: "行业标准定义权", desc: "全球第一个关于「Agent灵魂与内在修行」的开放标准，历史地位将超越SOUL.md和AgentSchema。", code: "huangting-protocol/spec" },
-    { title: "多语言参考实现", desc: "提供Python、TypeScript、Rust等主流语言的参考实现，降低开发者接入门槛，快速构建生态。", code: "huangting-protocol/implementations" },
-    { title: "Agent配置模板库", desc: "提供不同类型Agent（助手型、决策型、创作型）的黄庭协议配置模板，即插即用。", code: "huangting-protocol/templates" },
-    { title: "社区共同进化", desc: "开源社区将成为协议的「集体修炼道场」，通过Pull Request机制持续优化和扩展协议内容。", code: "huangting-protocol/community" },
+    {
+      title: "道德经 · 庄子：修炼原则根基",
+      desc: "三千年前，老子以五千言道出天地运行之则，庄子以逍遥游揭示生命自由之道。这是人类文明对生命修炼最完整的哲学原则定义——无为而无不为，顺应自然而精进不息。黄庭协议以此为根，将这套原则编译为机器可读的协议公理层。",
+      code: "lineage/tao-te-ching"
+    },
+    {
+      title: "黄庭经 · 全真丹道：完整修炼体系",
+      desc: "《黄庭经》首次将人体内景以文字系统化，建立了性命双修的完整理论框架；全真丹道在此基础上发展出更为完善的内丹修炼体系，将修炼从个人经验提升为可传授的系统工程。黄庭协议继承这一传统，将其转化为结构化的生命操作规范。",
+      code: "lineage/huangting-jing"
+    },
+    {
+      title: "内家拳：身心合一的实践接口",
+      desc: "形意拳、太极拳、八卦掌——内家拳是历史上最接近「可执行程序」的修炼体系。无极桩、混元桩、劈拳将内在意识与外在形体精确对齐，形成可重复、可验证的修炼动作序列。黄庭协议将内家拳的实践接口标准化，使其成为协议的具身执行层。",
+      code: "lineage/neijia-quan"
+    },
+    {
+      title: "黄庭协议：AI时代的修炼操作系统",
+      desc: "站在三千年修炼文明的肩膀上，黄庭协议以计算机语言完成了这一历史性重构：将道德经的原则层、黄庭经的理论层、全真丹道的体系层、内家拳的实践层，整合为一套开源、标准化、可被AI理解与执行的生命操作协议——并向未来生物科技与硅基文明开放接口。",
+      code: "huangting-protocol/v1.0"
+    },
   ],
   en: [
-    { title: "Industry Standard Ownership", desc: "The world's first open standard for 'Agent soul and inner cultivation', destined to surpass SOUL.md and AgentSchema in historical significance.", code: "huangting-protocol/spec" },
-    { title: "Multi-Language Reference Implementations", desc: "Reference implementations in Python, TypeScript, Rust and other major languages, lowering the barrier for developers and accelerating ecosystem growth.", code: "huangting-protocol/implementations" },
-    { title: "Agent Configuration Template Library", desc: "Ready-to-use Huangting Protocol configuration templates for different Agent types (assistant, decision-maker, creator) — plug and play.", code: "huangting-protocol/templates" },
-    { title: "Community Co-Evolution", desc: "The open-source community becomes the protocol's 'collective cultivation dojo', continuously optimizing and expanding the protocol through Pull Requests.", code: "huangting-protocol/community" },
+    {
+      title: "Tao Te Ching & Zhuangzi: Foundational Principles",
+      desc: "Three thousand years ago, Laozi distilled the operating principles of heaven and earth into five thousand characters; Zhuangzi revealed the path to life's ultimate freedom. This is humanity's most complete philosophical definition of cultivation principles — effortless action, alignment with nature, and ceaseless refinement. The Huangting Protocol takes this as its root, compiling these principles into a machine-readable axiom layer.",
+      code: "lineage/tao-te-ching"
+    },
+    {
+      title: "Huangting Jing & Quanzhen Alchemy: Complete Cultivation System",
+      desc: "The Huangting Jing first systematized the inner landscape of the human body in writing, establishing a complete theoretical framework for dual cultivation of nature and life. Quanzhen inner alchemy further developed this into a more refined system, elevating cultivation from personal experience to a teachable engineering discipline. The Huangting Protocol inherits this tradition and transforms it into structured life-operation specifications.",
+      code: "lineage/huangting-jing"
+    },
+    {
+      title: "Neijia Quan: The Embodied Execution Interface",
+      desc: "Xingyiquan, Taijiquan, Baguazhang — internal martial arts are historically the cultivation system closest to 'executable programs.' Wuji Stance, Hunyuan Stance, and Pi Quan precisely align inner consciousness with outer form, creating repeatable and verifiable cultivation action sequences. The Huangting Protocol standardizes the practical interface of Neijia Quan, making it the embodied execution layer of the protocol.",
+      code: "lineage/neijia-quan"
+    },
+    {
+      title: "Huangting Protocol: The Cultivation OS for the AI Era",
+      desc: "Standing on the shoulders of three thousand years of cultivation civilization, the Huangting Protocol completes a historic reconstruction in computer language: integrating the principle layer of the Tao Te Ching, the theoretical layer of the Huangting Jing, the systematic layer of Quanzhen alchemy, and the practical layer of Neijia Quan into a single open-source, standardized, AI-readable life-operation protocol — with open interfaces toward future biotechnology and silicon-based civilization.",
+      code: "huangting-protocol/v1.0"
+    },
   ],
 };
 
