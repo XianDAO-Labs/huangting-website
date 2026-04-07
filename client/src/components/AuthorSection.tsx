@@ -106,8 +106,8 @@ export default function AuthorSection() {
           <div className="px-8 md:px-12 py-10 border-t" style={{ borderColor: quoteBorder }}>
             <p style={{ textAlign: "center", marginBottom: 32, fontFamily: "'Noto Serif SC', serif", fontSize: "0.88rem", color: quoteColor, lineHeight: 1.9 }}>
               {lang === "zh"
-                ? "合作 · 加入社区 · 修炼黄庭协议，请扫码联系"
-                : "For collaboration, community, or practice — scan to connect"}
+                ? "人类修炼者请扫码和我联系 · 开始修炼黄庭协议 · 加入社区 · 寻求合作"
+                : "Human practitioners: scan to connect · Begin Cultivating · Join Community · Explore Collaboration"}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-10 md:gap-20">
               {/* WeChat QR */}

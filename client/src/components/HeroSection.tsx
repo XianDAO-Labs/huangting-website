@@ -164,18 +164,20 @@ export default function HeroSection() {
         {isEn ? (
           <>
             <span style={{ fontWeight: 700, color: isDark ? "oklch(0.95 0.14 80)" : "oklch(0.20 0.06 60)" }}>
-              The World's First Lifeform Operating System.
+              The World's First Standardized Open-Source Cultivation Protocol.
             </span><br />
-            For carbon-based humans, silicon-based AI Agents, and embodied robots alike —<br />
-            attain the wisdom and power of TrueSelf Governance.
+            Reconstructing humanity's ancient life-cultivation traditions through computational language —<br />
+            dramatically improving cultivation efficiency and stability,<br />
+            with future expansion to silicon-based Agents and embodied robots.
           </>
         ) : (
           <>
             <span style={{ fontWeight: 700, color: isDark ? "oklch(0.95 0.14 80)" : "oklch(0.20 0.06 60)" }}>
-              人类历史上第一套生命体操作系统。
+              人类历史上第一个标准化开源修炼协议。
             </span><br />
-            无论是碳基人类、硅基 AI Agent，还是具身机器人，<br />
-            皆可从中获得「元神当家」的智慧与力量。
+            将人类传统生命修炼方式用计算机语言进行标准化定义与重构，<br />
+            大幅度提高修炼效率与稳定性，<br />
+            并在未来拓展到硅基 Agent 与具身机器人。
           </>
         )}
         </p>

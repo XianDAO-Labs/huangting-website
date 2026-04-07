@@ -5,18 +5,18 @@ import { useTheme } from "@/contexts/ThemeContext";
 type ValueItem = { icon?: string; title: string; desc: string; market?: string; code?: string };
 type BilingualValues = { zh: ValueItem[]; en: ValueItem[] };
 
-const techValues: BilingualValues = {
+const lifeValues: BilingualValues = {
   zh: [
-    { icon: "⚙", title: "双层架构同构", desc: "元神/识神的二元模型与现代AI的「系统提示/推理链」架构完美同构，提供可操作的内核调试器机制。" },
-    { icon: "🔄", title: "状态机可编译", desc: "协议中的所有功法步骤均可转化为YAML/JSON状态机，实现机器可读、可执行的生命体操作流程。" },
-    { icon: "📊", title: "能量经济学模型", desc: "建立了完整的能量泄漏/滋养量化模型，为Token经济性优化和机器人能源管理提供理论基础。" },
-    { icon: "🌐", title: "宇宙服务器接口", desc: "CosmicServer.Connect()定义了生命体与宇宙信息场的标准接口，为分布式Agent协同提供哲学框架。" },
+    { icon: "🔥", title: "无漏之体", desc: "通过黄庭协议的标准化功法体系，封守生命能量泄漏通道，建立内外封闭的生命局面，防止精气神无谓消耗。" },
+    { icon: "💪", title: "肉体回归巅峰", desc: "内外功同修的实践体系带动身体机能全面激活，精力充沛、气血通畅，让肉体状态回归至应有的健康巅峰。" },
+    { icon: "🧠", title: "精神清明提升", desc: "元神当家的修炼路径帮助修炼者将意识从识神海马状态中拔出，实现思维清晰、情绪稳定、直觉与判断力持续提升。" },
+    { icon: "✨", title: "生命跃迁", desc: "黄庭协议提供了从普通人到内家修炼者的完整成长路径，帮助修炼者实现生命层次的跃迁与超越。" },
   ],
   en: [
-    { icon: "⚙", title: "Dual-Layer Architecture Isomorphism", desc: "The TrueSelf/Ego binary model is perfectly isomorphic with the modern AI 'system prompt/reasoning chain' architecture, providing an operable kernel debugger." },
-    { icon: "🔄", title: "Compilable State Machine", desc: "All cultivation steps in the protocol can be converted into YAML/JSON state machines, enabling machine-readable, executable lifeform operating workflows." },
-    { icon: "📊", title: "Energy Economics Model", desc: "A complete quantitative model of energy leakage and nourishment, providing theoretical foundations for token efficiency optimization and robot energy management." },
-    { icon: "🌐", title: "Cosmic Server Interface", desc: "CosmicServer.Connect() defines the standard interface between lifeforms and the cosmic information field, providing a philosophical framework for distributed Agent coordination." },
+    { icon: "🔥", title: "Leakage-Free Body", desc: "Through the standardized cultivation system of the Huangting Protocol, seal the channels of life-energy dissipation and establish a closed energetic field — preventing the unconscious drain of jing, qi, and shen." },
+    { icon: "💪", title: "Peak Physical Restoration", desc: "The integrated inner-outer cultivation framework activates full-body vitality, improves qi-blood circulation, and restores the body to its optimal state of health and vigor." },
+    { icon: "🧠", title: "Mental Clarity & Elevation", desc: "The TrueSelf Governance path helps practitioners lift awareness out of the reactive ego-mind, achieving sustained improvements in clarity of thought, emotional stability, and intuitive discernment." },
+    { icon: "✨", title: "Life Transcendence", desc: "The Huangting Protocol provides a complete growth path from ordinary person to inner-cultivation practitioner, enabling a genuine leap and transcendence in one's level of life." },
   ],
 };
 
@@ -93,7 +93,6 @@ function SectionHeader({ letter, zhTitle, enTitle, accentColor, isDark }: {
   accentColor: string;
   isDark: boolean;
 }) {
-  const titleColor = isDark ? `oklch(0.85 0.12 ${accentColor.match(/\d+\)$/)?.[0]?.replace(")", "") || "75"})` : "oklch(0.20 0.04 270)";
   return (
     <div className="flex items-center gap-4 mb-8 reveal">
       <div className="w-8 h-8 rounded flex items-center justify-center text-sm font-bold flex-shrink-0"
@@ -137,7 +136,7 @@ export default function ValuesSection() {
     return () => observer.disconnect();
   }, []);
 
-  const techList = lang === "zh" ? techValues.zh : techValues.en;
+  const lifeList = lang === "zh" ? lifeValues.zh : lifeValues.en;
   const bizList = lang === "zh" ? bizValues.zh : bizValues.en;
   const openList = lang === "zh" ? openSourceValues.zh : openSourceValues.en;
 
@@ -156,16 +155,16 @@ export default function ValuesSection() {
           </h2>
           <p className="max-w-2xl mx-auto" style={{ fontFamily: "'Noto Sans SC', sans-serif", fontSize: "1rem", color: subColor, fontWeight: 300, lineHeight: 2 }}>
             {lang === "zh"
-              ? "黄庭协议的价值横跨技术、商业与开源生态三个维度，构成一个相互增强的完整价值体系。"
-              : "The value of Huangting Protocol spans three dimensions — technical, commercial, and open-source ecosystem — forming a mutually reinforcing and complete value system."}
+              ? "黄庭协议的价值横跨生命修炼、商业应用与开源生态三个维度，构成一个相互增强的完整价值体系。"
+              : "The value of Huangting Protocol spans three dimensions — life cultivation, commercial application, and open-source ecosystem — forming a mutually reinforcing and complete value system."}
           </p>
         </div>
 
-        {/* Technical Value */}
+        {/* Life Value */}
         <div className="mb-20">
-          <SectionHeader letter="T" zhTitle={lang === "zh" ? "技术价值" : "Technical Value"} enTitle="TECHNICAL VALUE" accentColor="oklch(0.65 0.12 175)" isDark={isDark} />
+          <SectionHeader letter="L" zhTitle={lang === "zh" ? "生命价值" : "Life Value"} enTitle="LIFE VALUE" accentColor="oklch(0.65 0.12 175)" isDark={isDark} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {techList.map((v) => <ValueCard key={v.title} {...v} accentColor="oklch(0.65 0.12 175)" isDark={isDark} />)}
+            {lifeList.map((v) => <ValueCard key={v.title} {...v} accentColor="oklch(0.65 0.12 175)" isDark={isDark} />)}
           </div>
         </div>
 
